@@ -2,6 +2,7 @@ package com.labeldashboard.application.ticket;
 
 import com.labeldashboard.domain.ticket.*;
 import com.labeldashboard.infrastructure.persistence.TicketRepository;
+import com.labeldashboard.interfaces.rest.outlook.OutlookEmailIngestionRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,21 @@ public class TicketService {
 
     public Ticket create(Ticket ticket) {
         return repository.save(ticket);
+    }
+
+    public Ticket createFromEmail(OutlookEmailIngestionRequest email) {
+        return repository.findByThreadId(email.threadId())
+                .orElseGet(() -> {
+                    Ticket t = new Ticket();
+                    t.setThreadId(email.threadId());
+                    t.setSenderEmail(email.senderEmail());
+                    t.setClient(email.client());
+                    t.setType(email.type());
+                    t.setPriority(email.priority());
+                    t.setDueDate(email.dueDate());
+                    t.setDescription(email.subject() + "\n" + email.bodyPreview());
+                    return repository.save(t);
+                });
     }
 
     public Ticket update(Long id, Ticket updated) {
