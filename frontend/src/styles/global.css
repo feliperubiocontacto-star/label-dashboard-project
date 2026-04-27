@@ -1,40 +1,9 @@
-:root {
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  color: #0f172a;
-  background-color: #f8fafc;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-}
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-}
-
-.card {
-  border-radius: 12px;
-  padding: 1rem;
-  color: #0f172a;
-  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
-}
-
-.pending {
-  background: #fed7aa;
-}
-
-.completed {
-  background: #bbf7d0;
-}
+:root {background:#0f172a;color:#e2e8f0;font-family:sans-serif}
+.container{padding:20px}
+.table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #334155}
+.row.pendiente{background:#78350f}
+.row.en_proceso{background:#1e3a8a}
+.row.completado{background:#065f46}
+.urgent{color:#f87171;font-weight:bold}
+button{background:#22c55e;border:none;padding:6px 10px;color:white;cursor:pointer}
